@@ -1,2 +1,0 @@
-# Lincsama-de-note
-note
