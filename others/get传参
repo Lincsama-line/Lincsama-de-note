@@ -1,0 +1,2 @@
+#符号在GET请求中必须经过URL编码变为%23，原因是URL通用格式为scheme:[//[user[:password]@]host[:port]][/path][?query][#fragment]
+"#"符号规定在整个URL中起锚点作用，也是在URL中属于最后一位。如果你直接在GET请求中输入#，会被认为是一个锚点。而不是自己想要传递的参数

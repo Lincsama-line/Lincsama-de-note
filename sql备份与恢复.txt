@@ -1,0 +1,48 @@
+﻿备份:
+mysqldump -u root -p database_name > d:\db.bak
+恢复:
+mysql -u root -p database_name < d:\db.bak
+查看密码
+select host,user,password from mysql.user;  即可查看到数据库原用户和密码
+更改密码：
+update mysql.user set password='你要设置的密码'  where user='root'
+此方法有问题;
+
+创建用户
+insert into mysql.user(Host,User,Password) values("localhost","test",password("1234"));
+刷新权限表
+flush privileges; 
+导入
+2，同上面导出的第1步
+3，进入MySQL：mysql -u 用户名 -p
+如我输入的命令行:mysql -u root -p   (输入同样后会让你输入MySQL的密码)
+4，在MySQL-Front中新建你要建的数据库，这时是空数据库，如新建一个名为news的目标数据库
+5，输入：mysql>use 目标数据库名
+如我输入的命令行:mysql>use news;
+6，导入文件：mysql>source 导入的文件名; 
+如我输入的命令行：mysql>source news.sql;
+单次导入环境变量：
+export PATH=$PATH:/opt/lampp/bin/
+7：查看mysql使用的端口
+show global variables like 'port';
+8：查看端口占用情况
+lsof -i:端口号 用于查看某一端口的占用情况，比如查看8000端口使用情况，lsof -i:8000
+netstat -tunlp |grep 
+9：更改mysql root密码
+mysqladmin -u root password justice
+
+命令如下：
+
+cd /root/test/
+tar czvf test.tar.gz    .[!.]*    *
+
+解说下：
+
+tar czvf test.tar.gz *         压缩当前文件夹下非隐藏文件的文件
+
+tar czvf test.tar.gz  .[!.]*   压缩当前文件夹下隐藏文件排除两个隐藏文件夹"."和“..”
+
+排除的如图，然后会把上一级的文件也打包进来了。
+
+用户创建
+CREATE USER

@@ -1,0 +1,14 @@
+一般是对这几个参数进行注入
+User-Agent：使得服务器能够识别客户使用的操作系统，游览器版本等.（很多数据量大的网站中会记录客户使用的操作系统或浏览器版本等存入数据库中）
+
+Cookie：网站为了辨别用户身份、进行 session 跟踪而储存在用户本地终端上的数据（通常经过加密）.
+
+X-Forwarded-For：简称XFF头，它代表客户端，也就是HTTP的请求端真实的IP,（通常一些网站的防注入功能会记录请求端真实IP地址并写入数据库or某文件[通过修改XXF头可以实现伪造IP]）.
+
+Clien-IP：同上
+
+Rerferer：浏览器向 WEB 服务器表明自己是从哪个页面链接过来的.
+
+Host：客户端指定自己想访问的WEB服务器的域名/IP 地址和端口号
+使用sqlmap 进行头注入
+python27 sqlmap.py -r c:\Users\line\Desktop\sql注入\sqlHttp头注入\sqlmap_head.txt  --dbs --batch

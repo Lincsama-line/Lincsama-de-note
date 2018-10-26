@@ -1,0 +1,2 @@
+
+select id,ip from client_ip where 1>2  union select * from  ( (select user())a JOIN  (select version())b ); 

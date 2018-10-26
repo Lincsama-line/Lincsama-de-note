@@ -1,0 +1,16 @@
+﻿INTEGER,SMAlLLINT,DECIMAL,NUMERIC
+FLOAT,REAL,DOUBLE
+
+
+CREATE TABLE table_name (column_name column_type);
+
+CREATE TABLE IF NOT EXISTS `Text_of_test`(
+   `Text_id` INT UNSIGNED AUTO_INCREMENT,
+   `test_long_text` VARCHAR(100) NOT NULL,
+   `test_short` VARCHAR(40) NOT NULL,
+   `submission_date` DATE,
+   PRIMARY KEY ( `Text_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ID INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+// ID列为无符号整型，该列值不可以为空，并不可以重复>PRIMARY KEY，而且自增－＞AUTO_INREMENT。

